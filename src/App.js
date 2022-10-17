@@ -1,10 +1,9 @@
 import React from 'react'
+import Main from './components/main/Main'
 
 function App() {
   return (
-    <h1>
-      Hello World
-    </h1>
+    <Main />
   )
 }
 export default App
