@@ -1,0 +1,14 @@
+@import '../../utils/colours.scss';
+
+.myTable {
+  border-spacing: 0;
+  thead {
+    color: $brand-tableHeading;
+    background-color: $brand-tableHeadingBg;
+  }
+  td {
+    padding: 1rem;
+    margin: 0;
+    border: 1px solid $brand-border;
+  }
+}
