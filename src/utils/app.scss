@@ -1,0 +1,74 @@
+@import './colours.scss';
+body{
+  background-color: $brand-bg;
+  color: $brand-header;
+  margin-top: 0;
+  margin-left:0 ;
+    margin-right: 0;
+}
+
+.brand{
+  &-page {
+    &-name {
+      color: $brand-colourA;
+    }
+    &-title{
+      color: $brand-colourB;
+    }
+  }
+}
+
+.header{
+    background-color: $navbar-colour-bg;
+    color: #333;
+}
+@media screen and (min-width: 601px) {
+    h1{
+        font: bold 50px/1.5 'Roboto', sans-serif; 
+        color: rgb(230, 230, 230);
+        margin: 0;
+        //background-color: #333;
+    }
+    h2{
+        font: 600 40px/1.5 'Roboto', sans-serif; 
+        color: rgb(230, 230, 230);
+        margin: 0;
+        //background-color: #333;
+    }
+    .idselect{
+        font: 600 40px/1.5 'Roboto', sans-serif; 
+        color: rgb(228, 187, 7);
+        margin: 0;
+        background-color: $brand-bg;
+        border: 3px solid rgb(92, 92, 92);
+        box-shadow: 0px 0px 5px white;
+       
+      }
+      
+  }
+  
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 600px) {
+    h1{
+        font: bold 30px/1.5 'Roboto', sans-serif; 
+        color: rgb(230, 230, 230);
+        margin: 0;
+        //background-color: #333;
+    }
+    h2{
+        font: 600 20px/1.5 'Roboto', sans-serif; 
+        color: rgb(230, 230, 230);
+        margin: 0;
+        //background-color: #333;
+    }
+    .idselect{
+        font: 600 20px/1.5 'Roboto', sans-serif; 
+        color: rgb(40, 22, 202);
+        margin: 0;
+        background-color: $brand-bg;
+        border: 3px solid rgb(92, 92, 92);
+       
+      }
+      
+  }
+

@@ -1,5 +1,5 @@
 {
-    "parser": "/home/vagrant/ReactTraining/node_modules/@babel/eslint-parser",
+    "parser": "C:/Users/James O'Brien/VS Code Projects/React/ReactTraining/node_modules/@babel/eslint-parser",
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
