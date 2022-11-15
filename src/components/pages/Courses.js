@@ -5,7 +5,7 @@ import './page.scss'
 function Courses() {
   return (
     <div className="mainBody">
-      <h1>Courses</h1>
+      <h1 className="pageHeading">Course List</h1>
       <MyCourseTable />
     </div>
   )

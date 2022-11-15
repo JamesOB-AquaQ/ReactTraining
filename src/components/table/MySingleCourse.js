@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useEffect, useState } from 'react'
 import './table.scss'
 
@@ -10,7 +11,6 @@ function MySingleCourse() {
     'Credit Amount',
     'Student Capacity'
   ]
-  //  const mainData = [...]
   const [mainData, setMainData] = useState([])
   const baseUrl = 'http://localhost:8080/api/courses'
   const [myUrl, setMyUrl] = useState('http://localhost:8080/api/courses')
@@ -19,12 +19,9 @@ function MySingleCourse() {
   const [isFilterAdded, setIsFilterAdded] = useState(false)
 
   useEffect(() => {
-    console.log('I am using effect hook')
     if (mainData.length === 0 || isFilterAdded) {
       fetch(myUrl)
         .then((data) => {
-          console.log('datareceived:', data)
-
           setMainData(data)
           setIsFilterAdded(false)
         })
@@ -33,19 +30,13 @@ function MySingleCourse() {
 
   const updateRow = (value, rowData, field) => {
     const rowToUpdate = mainData.filter((row) => row.courseId === rowData)
-    console.log('value', value)
-    console.log('field', field)
-    console.log('rowToUpdate', rowToUpdate[0])
     rowToUpdate[0][field] = value
   }
   const removeRow = (rowData) => {
-    console.log('removeRow', rowData)
-    console.log('filter: ', mainData.filter((row) => (row.courseId !== rowData)))
     setMainData(mainData.filter((row) => (row.courseId !== rowData)))
   }
 
   function applySearchFilter() {
-    console.log('handlingfilter')
     if (selectFilter === 'courseId') {
       setMyUrl(`${baseUrl}/${filterValue}`)
       setIsFilterAdded(true)
@@ -56,8 +47,6 @@ function MySingleCourse() {
     fetch(myUrl)
       .then((response) => response.json())
       .then((data) => {
-        console.log('datareceived:', data)
-
         setMainData(data)
       })
   }
@@ -97,7 +86,6 @@ function MySingleCourse() {
               <>
                 <td
                   contentEditable={mainData.courseId === editingRow}
-                  // eslint-disable-next-line react/no-unknown-property
                   field={prop}
                   onBlur={(event) => {
                     updateRow(event.target.innerHTML, mainData)

@@ -1,14 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import {
-  Outlet, Link, NavLink, useParams, useLocation
+  Outlet, NavLink, useParams, useLocation
 } from 'react-router-dom'
 import React from 'react'
 import { string, bool } from 'prop-types'
 import './layout.scss'
-// const NavUnlisted = styled.ul`
 
-//
-
-// `
 function HeaderLink({ to, active }) {
   const pageTitle = to.split('/')[1].charAt(0).toUpperCase() + to.split('/')[1].slice(1)
   return (
@@ -43,41 +40,7 @@ function Layout() {
           active={location.pathname.includes('/enrolment/')}
         />
       </div>
-      {/* <ul className="navbar">
-        <NavLink
-          to="/students"
-          exact
-          activeClassName="active"
-        >
-          <li>Students</li>
-        </NavLink>
-        <NavLink
-          to="/courses"
-          style={({ isActive }) => (isActive
-            ? {
-              color: '#fff',
-              background: '#7600dc'
-            }
-            : { color: '#8a8b8d', background: '#f0f0f0' })}
-          activeClassName="current"
-          exact
-        >
-          <li>Courses</li>
-        </NavLink>
-        <NavLink
-          to={useParams.studentId ? '/enrolment/:studentId' : '/enrolment/1'}
-          style={({ isActive }) => (isActive
-            ? {
-              color: '#fff',
-              background: '#7600dc'
-            }
-            : { color: '#8a8b8d', background: '#f0f0f0' })}
-          activeClassName="current"
-          exact
-        >
-          <li>Enrolment</li>
-        </NavLink>
-      </ul> */}
+
       <Outlet />
     </>
   )

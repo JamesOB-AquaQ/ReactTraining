@@ -1,267 +1,210 @@
 @import '../../utils/colours.scss';
 
-.tdinvisible{
+.tdinvisible {
   background-color: $brand-bg;
   white-space: nowrap;
-  width:fit-content;
-  border: 0;
-  border-style : hidden!important;
-  padding: 0;
   margin: 0;
+  width: fit-content;
+  border: 0;
+  border-style: hidden !important;
+  border-left-style: hidden !important;
+  border-right-style: hidden !important;
+}
+
+.trerror {
+  background-color: rgba(133, 2, 2, 0.719) !important;
+}
+
+.mainBody {
+  margin: 10px;
+}
+
+.textlabel {
+  font-size: 30px;
+  font-weight: 100;
+  font: 100 20px/1.5 'Roboto', sans-serif;
+}
+
+.h1 {
+  font: bold 35px/1.5 'Roboto', sans-serif;
+  color: #333;
+  margin: 0;
+  background-color: #333;
+}
+
+.error {
+  color: red;
+  font: bold 1.5vw/1.5 'Roboto', sans-serif;
+}
+
+.searchbar {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  color: #333;
+  margin-left: 0.2rem;
+}
+.search {
+  display: flex;
+  flex-direction: flex;
+  padding: 0px 0px;
+  align-items: center;
+}
+.dropdown {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
   
+
 }
 .myTable {
   border-spacing: 0;
   max-width: 100%;
-  width: fit-content;
+  width: 80%;
+
   thead {
     color: $brand-tableHeading;
     background-color: $brand-tableHeadingBg;
+
     th {
-      font-weight: 400;
-      padding: 0.5rem;
-      text-align: left;
-    }
-    td{
       width: fit-content;
-      max-width: 100%;
-      font-weight: 400;
-      padding: 0.2rem;
       text-align: left;
-      
+      border: 1px solid $brand-border;
     }
   }
+
   td {
     width: fit-content;
-    padding: 0.2rem;
-    margin: 0;
     border: 1px solid $brand-border;
-    font-size: 30px;
-    font-weight: 100;
-    font: 100 20px/1.5 'Roboto', sans-serif; 
-    
   }
+
   tbody {
     tr {
       &:nth-child(even) {
         background-color: rgb(126, 125, 125);
         color: $brand-tableRow;
       }
+
       &:nth-child(odd) {
         background-color: rgb(179, 179, 179);
         color: $brand-tableRow;
       }
     }
   }
-  input{
+
+  input {
     width: 100%;
-    padding: auto;
-    font: 100 20px/1.5 'Roboto', sans-serif; 
+    padding: 0;
     background-color: #ffffff23;
     color: white;
     border: 2px inset#ccc;
     border-radius: 4px;
-    
-  }
-  .tr-inputs td {
-    position: relative;
-    padding: 0.2rem;
-    padding-bottom: 0rem;
-    margin: 0;
-  }
-  
-  .tr-inputs div {
-    position: absolute;
-    display: flex;
-    padding: 0.2rem;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
   }
 }
-.trerror {
-  background-color: rgba(133, 2, 2, 0.719)!important;
-}
 
-.mainBody {
-  margin: 10px;
-}
-.textlabel {
-  font-size: 30px;
-  font-weight: 100;
-  font: 100 20px/1.5 'Roboto', sans-serif; 
-}
-.h1{
-  font: bold 35px/1.5 'Roboto', sans-serif; 
-  color: #333;
-  margin: 0;
-  background-color: #333;
-}
-
-.buttondelete{
-  //position: relative;
-  font: bold 15px/1.5 'Roboto', sans-serif; 
-
-  //margin: 30px auto;
-  padding: auto auto;
-  width: fit-content;
-  overflow: hidden;
-  display: inline;
-  border-width: 0;
-  outline: none;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-  
-  background-color: #810303c9;
-  color: #ecf0f1;
-  
-  transition: background-color .3s;
-}
-.buttondelete:hover, .buttondelete:focus {
-  background-color: #fa5e53ea;
-}
-
-
-.buttonadd{
-  //position: relative;
-  font: bold 15px/1.5 'Roboto', sans-serif; 
-
-  //margin: 30px auto;
-  padding: auto auto;
-  width: 6vw;
-  overflow: hidden;
-  //margin: 0.1rem;
-  border-width: 0;
-  outline: none;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-  
-  background-color: #257025d8;
-  color: #ecf0f1;
-  
-  transition: background-color .3s;
-}
-.buttonadd:hover, .buttonadd:focus {
-  background-color: #70c070bd;
-}
-
-.buttonenroll{
-  //position: relative;
-  font: bold 15px/1.5 'Roboto', sans-serif; 
-
-  //margin: 30px auto;
-  padding: auto auto;
-  width: 6vw;
-  overflow: hidden;
-
-  border-width: 0;
-  outline: none;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-  
-  background-color: #c06109ec;
-  color: #ecf0f1;
-  
-  transition: background-color .3s;
-}
-.buttonenroll:hover, .buttonenroll:focus {
-  background-color: #dd7c21b6;
+@mixin message {
+  margin-top: 0;
+  padding-left: 1vw;
+  font: 700 1.25vw/1.0 'Roboto', sans-serif;
+  align-self: center;
 
 }
-.buttonedit{
-  position: relative;
-  font: bold 15px/1.5 'Roboto', sans-serif; 
-  display: inline;
-  margin-bottom: 2px;
-  padding: 10px auto;
-  margin-right: 0.5vw;
-  overflow: hidden;
-  width: fit-content;
-  border-width: 0;
-  outline: none;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-  
-  background-color: #012391ce;
-  color: #ecf0f1;
-  
-  transition: background-color .3s;
+
+.filtermessage {
+  @include message;
+  width: 25%;
+  color: rgb(194, 0, 0);
 }
 
-.buttonedit:hover, .buttondelete:focus {
-  background-color: #899efdd2;
+.enrollmessage {
+  @include message;
+  width: 50%;
 }
 
-
-.error{
-  color: red;
-  font-size: 12px;
+.actionmessage {
+  @include message;
+  width: 50%;
 }
-.dropdown{
-  // width:8vw;
-  // height: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 8px;
-  // box-sizing: border-box;
-  // background-color: #f8f8f8;
-  // color: #333;
-  font: 100 15px/1.5 'Roboto', sans-serif; 
 
-}
-.searchbar{
-  width: 8vw;
- 
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0px 0px;
-  box-sizing: border-box;
-  background-color: #f8f8f8;
-  color: #333;
-  font: 100 15px/1.5 'Roboto', sans-serif; 
-
-}
-.filter{
- 
+.filter {
+  width: 80%;
   padding: 5px 0px;
   display: flex;
-  flex-direction: row;
+  min-width: 600px;
+}
+.actionColumn {
+  width: fit-content;
+}
+@media only screen and (max-width: 960px) {
+  .myTable {
+    max-width: 80%;
+
+    thead {
+      th {
+        font: 600 15PX/1.5 'Roboto', sans-serif;
+        padding: 0.25rem;
+      }
+    }
+
+    td {
+      padding: 0.25rem;
+      font: 100 15px/1.5 'Roboto', sans-serif;
+    }
+
+    input {
+
+      font: 100 15px/1.5 'Roboto', sans-serif;
+    }
+  }
+  
+  .search {
+    font: 100 15px/1.5 'Roboto', sans-serif;
+    
+  }
+  .dropdown {
+    font: 100 15px/1.5 'Roboto', sans-serif;
+  }
+
+  .searchbar {
+    width: 80px;
+    font: 100 15px/1.5 'Roboto', sans-serif;
+
+  }
 }
 
-.filterbutton{
-  //position: relative;
-  font: bold 15px/1.5 'Roboto', sans-serif; 
 
-  //margin: 30px auto;
-  padding: 0px 0px;
-  width: 4vw;
-  overflow: hidden;
 
-  border-width: 0;
-  outline: none;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+@media only screen and (min-width: 961px) {
+
+  .myTable {
+    thead {
+      th {
+        font: 600 1.5vw/1.75 'Roboto', sans-serif;
+        padding: 0.25rem 0.4rem;
+      }
+    }
+
+    td {
+      padding: 0.25rem 0.4rem;
+      font: 100 1.5vw/1.5 'Roboto', sans-serif;
+    }
+
+    input {
+      font: 100 1.5vw/1.5 'Roboto', sans-serif;
+    }
+  }
+
+  .search {
+    font: 100 1.75vw/1.5 'Roboto', sans-serif;
+  }
   
-  background-color: #458ffdd8;
-  color: #ecf0f1;
-  
-  transition: background-color .3s;
-}
+  .dropdown {
+    font: 100 1.75vw/1.5 'Roboto', sans-serif;
+  }
 
-.search{
-  display: flex;
-  flex-direction: flex;
-  padding: 0px 0px;
-  font: 100 20px/1.5 'Roboto', sans-serif; 
-}
+  .searchbar {
+    width: 12vw;
+    font: 100 1.5vw/1.5 'Roboto', sans-serif;
 
-.inputrowfailed{
-  padding: 0px 0px;
-  font: 100 20px/1.5 'Roboto', sans-serif; 
-  background-color: #ca1b1bcc;
-  color: white;
-  border: 2px inset#ccc;
-  border-radius: 4px;
-  
+  }
 }

@@ -21,23 +21,33 @@ body{
 .header{
     background-color: $navbar-colour-bg;
     color: #333;
+    display:flex;
+    flex-direction: flex;
+    justify-content: left;
+    width:100%;
+
+
+}
+h1{
+  margin-left: 10px;
 }
 @media screen and (min-width: 601px) {
     h1{
+        
         font: bold 50px/1.5 'Roboto', sans-serif; 
         color: rgb(230, 230, 230);
-        margin: 0;
-        //background-color: #333;
+        
+        display: inline;
     }
     h2{
-        font: 600 40px/1.5 'Roboto', sans-serif; 
-        color: rgb(230, 230, 230);
+        font: 600 2vw/1.5 'Roboto', sans-serif; 
+        color: $brand-colourB;
         margin: 0;
         //background-color: #333;
     }
     .idselect{
-        font: 600 40px/1.5 'Roboto', sans-serif; 
-        color: rgb(228, 187, 7);
+        font: 600 2vw/1.5 'Roboto', sans-serif; 
+        color: $id-box-color;
         margin: 0;
         background-color: $brand-bg;
         border: 3px solid rgb(92, 92, 92);
@@ -54,16 +64,17 @@ body{
         color: rgb(230, 230, 230);
         margin: 0;
         //background-color: #333;
+        width: 100%;
     }
     h2{
         font: 600 20px/1.5 'Roboto', sans-serif; 
-        color: rgb(230, 230, 230);
+        color: $brand-colourB;
         margin: 0;
         //background-color: #333;
     }
     .idselect{
         font: 600 20px/1.5 'Roboto', sans-serif; 
-        color: rgb(40, 22, 202);
+        color: $id-box-color;
         margin: 0;
         background-color: $brand-bg;
         border: 3px solid rgb(92, 92, 92);
@@ -71,4 +82,19 @@ body{
       }
       
   }
+  .mk{
+    color: rgb(252, 0, 231);
+    display: inline;
+    font: 100 45px/1.5 'Roboto', sans-serif; 
+    
+   
+  }
 
+  .logo{
+    height: 5.5rem;
+    width: 5.5rem;
+    float: right;
+    //margin-right: 20px !important;
+    margin-top: -25;
+    margin-left: 20px !important;
+   }

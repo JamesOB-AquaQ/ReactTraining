@@ -1,0 +1,27 @@
+"filename", "language", "SCSS", "JavaScript", "Markdown", "JSON", "JSON with Comments", "HTML", "comment", "blank", "total"
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\.eslintrc.json", "JSON with Comments", 0, 0, 0, 0, 61, 0, 0, 0, 61
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\README.md", "Markdown", 0, 0, 1, 0, 0, 0, 0, 1, 2
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\index.js", "JavaScript", 0, 6, 0, 0, 0, 0, 0, 2, 8
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\package-lock.json", "JSON", 0, 0, 0, 7445, 0, 0, 0, 1, 7446
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\package.json", "JSON", 0, 0, 0, 59, 0, 0, 0, 1, 60
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\public\index.html", "HTML", 0, 0, 0, 0, 0, 14, 0, 1, 15
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\App.js", "JavaScript", 0, 33, 0, 0, 0, 0, 0, 3, 36
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\header\header.js", "JavaScript", 0, 16, 0, 0, 0, 0, 0, 3, 19
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\header\header.scss", "SCSS", 9, 0, 0, 0, 0, 0, 0, 2, 11
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\layout\Layout.js", "JavaScript", 0, 45, 0, 0, 0, 0, 0, 3, 48
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\layout\layout.scss", "SCSS", 38, 0, 0, 0, 0, 0, 0, 12, 50
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\pages\Courses.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 2, 14
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\pages\NoPage.js", "JavaScript", 0, 5, 0, 0, 0, 0, 0, 3, 8
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\pages\SingleStudentEnrolment.js", "JavaScript", 0, 9, 0, 0, 0, 0, 0, 4, 13
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\pages\Students.js", "JavaScript", 0, 12, 0, 0, 0, 0, 0, 2, 14
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\pages\page.scss", "SCSS", 25, 0, 0, 0, 0, 0, 0, 5, 30
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\table\MyCourseTable.js", "JavaScript", 0, 368, 0, 0, 0, 0, 2, 15, 385
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\table\MySingleCourse.js", "JavaScript", 0, 113, 0, 0, 0, 0, 1, 13, 127
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\table\MyStudentEnrolment.js", "JavaScript", 0, 405, 0, 0, 0, 0, 8, 28, 441
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\table\MyStudentTable.js", "JavaScript", 0, 360, 0, 0, 0, 0, 3, 17, 380
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\table\buttons.scss", "SCSS", 210, 0, 0, 0, 0, 0, 2, 40, 252
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\components\table\table.scss", "SCSS", 217, 0, 0, 0, 0, 0, 19, 33, 269
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\utils\app.scss", "SCSS", 81, 0, 0, 0, 0, 0, 5, 14, 100
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\src\utils\colours.scss", "SCSS", 12, 0, 0, 0, 0, 0, 11, 0, 23
+"c:\Users\James O'Brien\VS Code Projects\React\ReactTraining\webpack.config.js", "JavaScript", 0, 52, 0, 0, 0, 0, 0, 2, 54
+"Total", "-", 592, 1436, 1, 7504, 61, 14, 51, 207, 9866
