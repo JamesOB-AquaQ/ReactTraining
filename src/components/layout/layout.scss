@@ -1,0 +1,46 @@
+@import '../../utils/colours.scss';
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    margin-top: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: $navbar-colour-bg;
+    border: 0;
+    outline: 0;
+    width: 100%;
+  }
+ 
+.navlink{
+    
+    display: inline;
+    padding-left: 20px; 
+    padding-right: 40px;
+    padding-bottom: 8px;
+    color: aliceblue;
+    font-weight: 100;
+    font: 100 35px/1.5 'Roboto', sans-serif; 
+    background-color: rgb(52, 155, 141);
+    text-decoration: none;
+
+    
+    &-active{
+        display: inline;
+        background-color: $brand-bg;
+        color: rgb(172, 7, 144);
+        padding-left: 10px; 
+        padding-right: 40px;
+        padding-bottom: 8px;
+        font-weight: 100;
+        font: bold 40px/1.5 'Roboto', sans-serif; 
+        text-decoration: none;
+    }
+}
+.navlink:hover {
+    background-color: rgb(80, 219, 191);
+    
+}
+
+
+
+

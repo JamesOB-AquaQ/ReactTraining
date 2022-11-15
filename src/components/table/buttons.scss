@@ -1,0 +1,235 @@
+@mixin button {
+    width: fit-content;
+    overflow: hidden;
+    border-width: 0;
+    outline: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    color: #ecf0f1;
+    transition: background-color .3s;
+}
+
+@mixin icon-button {
+    @include button;
+    position: relative;
+    display: inline;
+    height: fit-content;
+    align-items: center;
+}
+
+@mixin buttonedit {
+    @include icon-button;
+
+    margin-left: auto;
+    background-color: #012391ce;
+
+    &:hover {
+        background-color: #899efdd2;
+    }
+}
+
+@mixin buttondelete {
+    @include icon-button;
+    margin-left: 2.5%;
+    background-color: #810303c9;
+
+    &:hover,
+    &:focus {
+        background-color: #fa5e53ea;
+    }
+}
+
+@mixin buttonviewenroll {
+    @include icon-button;
+    margin-left: 2.5%;
+    background-color: #c06109ec;
+
+    &:hover,
+    &:focus {
+        background-color: #dd7c21b6;
+    }
+}
+@mixin buttonadd {
+    @include icon-button;
+    margin-left: 1.5%;
+    background-color: #257025d8;
+
+    &:hover,
+    &:focus {
+        background-color: #70c070bd;
+    }
+}
+
+
+.filterbutton {
+    @include button;
+    margin-left: 0.5vw;
+    background-color: #458ffdd8;
+    &:hover {
+        background-color: #011e9ee3;
+    }
+
+   
+}
+.buttonenroll {
+    @include button;
+    font: bold 1.2vw/1.5 'Roboto', sans-serif;
+    width: 100%;
+    background-color: #c06109ec;
+    &:hover,
+    &:focus {
+        background-color: #dd7c21b6;
+    }
+}
+.button-unenroll {
+    @include button;
+    width: 95%;
+    font: bold 1.4vw/1.5 'Roboto', sans-serif;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    background-color: #961f0aec;
+    &:hover {
+        background-color: #ca4141b6;
+    }
+}
+.button-enrolloptions {
+    @include button;
+    font: bold 1.3vw/1.5 'Roboto', sans-serif;
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    background-color: #c06109ec;
+    &:hover,
+    &:focus {
+        background-color: #dd7c21b6;
+    }
+}
+
+  .buttonaddnew{
+    @include button;
+    font: bold 1.5vw/1.5 'Roboto', sans-serif; 
+    display: flex;
+    flex-direction: row;
+    background-color: green;
+    align-self: flex-end;
+    align-items: center;
+  }
+.buttonaddnew:hover,
+.buttonadd:focus {
+    background-color: #70c070bd;
+}
+
+.resetbutton {
+    @include button;
+    font: bold 1.2vw/1.5 'Roboto', sans-serif;
+    margin-top: 0.5rem;
+    background-color: #da7d03e5;
+    transition: background-color .3s;
+}
+
+.resetbutton:hover,
+.resetbutton:focus {
+    background-color: #b35804b9;
+}
+.buttondelete-courses {
+    @include buttondelete;
+    width: 48%;
+    
+}
+
+.buttonedit-courses {
+    @include buttonedit;
+    width: 48%;
+
+}
+
+.buttondelete-students {
+    @include buttondelete;
+    width: 30%;
+}
+
+.buttonedit-students {
+    @include buttonedit;
+    width: 30%;
+    
+}
+
+.buttonviewenroll-students {
+    @include buttonviewenroll;
+
+    width: 30%;
+    
+}
+.buttonadd-students {
+    @include buttonadd;
+    
+    width: 30%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}
+.buttonadd-courses {
+    @include buttonadd;
+    
+    width: 48%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+}
+
+@media only screen and (max-width: 960px) {
+    .icon-sizing {
+        width: 25px;
+        height: 25px;
+    }
+ 
+      .button-enrolloptions{
+        font: bold 15px/1.5 'Roboto', sans-serif;
+    }
+      .buttonenroll{
+        font: bold 15px/1.5 'Roboto', sans-serif;
+    }
+
+
+    .filterbutton {
+        font: bold 15px/1.5 'Roboto', sans-serif;
+    }
+
+  
+    .resetbutton{
+        font: bold 15px/1.5 'Roboto', sans-serif;
+    }
+}
+
+@media only screen and (min-width: 961px) {
+    .icon-sizing {
+        width: 40px;
+        height: 40px;
+        align-items: center;
+    }
+    
+    // .buttonviewenroll {
+    //     padding-bottom: 20%;
+    //     padding-top: 5%;
+    // }
+
+    .filterbutton {
+        @include button;
+        font: bold 1.5vw/1.5 'Roboto', sans-serif;
+        margin-left: 0.5vw;
+        padding: 0 0.5vw;
+       
+        background-color: #458ffdd8;
+        
+
+       
+    }
+    .filterbutton {
+        font: bold 1.5vw/1.5 'Roboto', sans-serif;
+    }
+
+    .filterbutton:hover,
+    .filterbutton:focus {
+        background-color: #011e9ee3;
+    }
+}

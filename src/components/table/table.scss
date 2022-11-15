@@ -1,14 +1,210 @@
 @import '../../utils/colours.scss';
 
+.tdinvisible {
+  background-color: $brand-bg;
+  white-space: nowrap;
+  margin: 0;
+  width: fit-content;
+  border: 0;
+  border-style: hidden !important;
+  border-left-style: hidden !important;
+  border-right-style: hidden !important;
+}
+
+.trerror {
+  background-color: rgba(133, 2, 2, 0.719) !important;
+}
+
+.mainBody {
+  margin: 10px;
+}
+
+.textlabel {
+  font-size: 30px;
+  font-weight: 100;
+  font: 100 20px/1.5 'Roboto', sans-serif;
+}
+
+.h1 {
+  font: bold 35px/1.5 'Roboto', sans-serif;
+  color: #333;
+  margin: 0;
+  background-color: #333;
+}
+
+.error {
+  color: red;
+  font: bold 1.5vw/1.5 'Roboto', sans-serif;
+}
+
+.searchbar {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  color: #333;
+  margin-left: 0.2rem;
+}
+.search {
+  display: flex;
+  flex-direction: flex;
+  padding: 0px 0px;
+  align-items: center;
+}
+.dropdown {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+  
+
+}
 .myTable {
   border-spacing: 0;
+  max-width: 100%;
+  width: 80%;
+
   thead {
     color: $brand-tableHeading;
     background-color: $brand-tableHeadingBg;
+
+    th {
+      width: fit-content;
+      text-align: left;
+      border: 1px solid $brand-border;
+    }
   }
+
   td {
-    padding: 1rem;
-    margin: 0;
+    width: fit-content;
     border: 1px solid $brand-border;
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: rgb(126, 125, 125);
+        color: $brand-tableRow;
+      }
+
+      &:nth-child(odd) {
+        background-color: rgb(179, 179, 179);
+        color: $brand-tableRow;
+      }
+    }
+  }
+
+  input {
+    width: 100%;
+    padding: 0;
+    background-color: #ffffff23;
+    color: white;
+    border: 2px inset#ccc;
+    border-radius: 4px;
+  }
+}
+
+@mixin message {
+  margin-top: 0;
+  padding-left: 1vw;
+  font: 700 1.25vw/1.0 'Roboto', sans-serif;
+  align-self: center;
+
+}
+
+.filtermessage {
+  @include message;
+  width: 25%;
+  color: rgb(194, 0, 0);
+}
+
+.enrollmessage {
+  @include message;
+  width: 50%;
+}
+
+.actionmessage {
+  @include message;
+  width: 50%;
+}
+
+.filter {
+  width: 80%;
+  padding: 5px 0px;
+  display: flex;
+  min-width: 600px;
+}
+.actionColumn {
+  width: fit-content;
+}
+@media only screen and (max-width: 960px) {
+  .myTable {
+    max-width: 80%;
+
+    thead {
+      th {
+        font: 600 15PX/1.5 'Roboto', sans-serif;
+        padding: 0.25rem;
+      }
+    }
+
+    td {
+      padding: 0.25rem;
+      font: 100 15px/1.5 'Roboto', sans-serif;
+    }
+
+    input {
+
+      font: 100 15px/1.5 'Roboto', sans-serif;
+    }
+  }
+  
+  .search {
+    font: 100 15px/1.5 'Roboto', sans-serif;
+    
+  }
+  .dropdown {
+    font: 100 15px/1.5 'Roboto', sans-serif;
+  }
+
+  .searchbar {
+    width: 80px;
+    font: 100 15px/1.5 'Roboto', sans-serif;
+
+  }
+}
+
+
+
+@media only screen and (min-width: 961px) {
+
+  .myTable {
+    thead {
+      th {
+        font: 600 1.5vw/1.75 'Roboto', sans-serif;
+        padding: 0.25rem 0.4rem;
+      }
+    }
+
+    td {
+      padding: 0.25rem 0.4rem;
+      font: 100 1.5vw/1.5 'Roboto', sans-serif;
+    }
+
+    input {
+      font: 100 1.5vw/1.5 'Roboto', sans-serif;
+    }
+  }
+
+  .search {
+    font: 100 1.75vw/1.5 'Roboto', sans-serif;
+  }
+  
+  .dropdown {
+    font: 100 1.75vw/1.5 'Roboto', sans-serif;
+  }
+
+  .searchbar {
+    width: 12vw;
+    font: 100 1.5vw/1.5 'Roboto', sans-serif;
+
   }
 }

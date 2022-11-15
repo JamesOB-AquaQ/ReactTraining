@@ -1,0 +1,30 @@
+@import '../../utils/colours.scss';
+.mainBody {
+    margin: 10px;
+  }
+h1{
+    font: bold 35px/1.5 'Roboto', sans-serif; 
+    color: black;
+    margin: 0;
+    display: inline;
+    
+}
+
+@media only screen and (max-width: 800px) {
+  .pageHeading{
+    font: bold 25px/1.5 'Roboto', sans-serif; 
+    color: rgb(68, 1, 146);
+    margin: 0;
+    
+}
+}
+
+@media only screen and (min-width: 801px) {
+  .pageHeading{
+    font: bold 2.5vw/1.5 'Roboto', sans-serif; 
+    color: rgb(68, 1, 146);
+    margin: 0;
+    display: inline;
+    
+}
+}
