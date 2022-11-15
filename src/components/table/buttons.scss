@@ -20,7 +20,7 @@
 @mixin buttonedit {
     @include icon-button;
 
-    margin-left: auto;
+    margin-left: 2.5%;
     background-color: #012391ce;
 
     &:hover {
@@ -71,17 +71,8 @@
 
    
 }
-.buttonenroll {
-    @include button;
-    font: bold 1.2vw/1.5 'Roboto', sans-serif;
-    width: 100%;
-    background-color: #c06109ec;
-    &:hover,
-    &:focus {
-        background-color: #dd7c21b6;
-    }
-}
-.button-unenroll {
+
+@mixin enrollButtons{
     @include button;
     width: 95%;
     font: bold 1.4vw/1.5 'Roboto', sans-serif;
@@ -89,11 +80,47 @@
     margin: 0 auto;
     align-items: center;
     text-align: center;
+    padding-right: 0;
+}
+.buttonenroll {
+    @include enrollButtons();
+    background-color: #c06109ec;
+    &:hover {
+        background-color: #dd7c21b6;
+    }
+}
+.button-unenroll {
+    @include enrollButtons();
     background-color: #961f0aec;
     &:hover {
         background-color: #ca4141b6;
     }
 }
+// .buttonenroll {
+//     @include button;
+//     font: bold 1.4vw/1.5 'Roboto', sans-serif;
+//     width: 95%;
+//     margin-left: 2.5%;
+//     background-color: #c06109ec;
+//     &:hover,
+//     &:focus {
+//         background-color: #dd7c21b6;
+//     }
+// }
+// .button-unenroll {
+//     @include button;
+//     width: 95%;
+//     font: bold 1.4vw/1.5 'Roboto', sans-serif;
+//     display: flex;
+//     margin: 0 auto;
+//     align-items: center;
+//     text-align: center;
+//     padding-right: 0;
+//     background-color: #961f0aec;
+//     &:hover {
+//         background-color: #ca4141b6;
+//     }
+// }
 .button-enrolloptions {
     @include button;
     font: bold 1.3vw/1.5 'Roboto', sans-serif;

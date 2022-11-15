@@ -274,7 +274,7 @@ function MyStudentEnrolment() {
               ))}
               <td className="tdinvisible">
                 <button className="button-unenroll" type="button" onClick={() => { handleUnenroll(data.courseId) }}>
-                  Unenroll&nbsp;&nbsp;
+                  Unenroll&nbsp;
                   <MinusCircle size="1.7vw" />
                 </button>
               </td>
@@ -333,7 +333,8 @@ function MyStudentEnrolment() {
                 ))}
                 <td className="tdinvisible">
                   <button className="buttonenroll" type="button" onClick={() => { handleEnroll(data.courseId) }}>
-                    Enroll
+                    Enroll&nbsp;
+                    <PlusCircle size="1.7vw" />
                   </button>
                 </td>
               </tr>
@@ -380,12 +381,12 @@ function MyStudentEnrolment() {
         {!isEnrollOptionsVisible ? (
           <button className="button-enrolloptions" type="button" onClick={() => { setIsEnrollOptionsVisible(true) }}>
             Enroll in New Course&nbsp;
-            <PlusCircle />
+            <PlusCircle size="1.7vw" />
           </button>
         ) : (
           <button className="button-enrolloptions" type="button" onClick={() => { setIsEnrollOptionsVisible(false) }}>
             Hide Enroll Options&nbsp;
-            <MinusCircle />
+            <MinusCircle size="1.7vw" />
           </button>
         )}
         {isUnenrollMessageVisible
