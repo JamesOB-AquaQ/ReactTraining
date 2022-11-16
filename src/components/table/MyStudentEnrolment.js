@@ -1,12 +1,14 @@
+/* eslint-disable max-len */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import './table.scss'
 import './buttons.scss'
 import {
   PlusCircle, MinusCircle
 } from 'react-feather'
+import { v4 as uuid } from 'uuid'
 
 function MyStudentEnrolment() {
   const headerCols = [
@@ -34,20 +36,22 @@ function MyStudentEnrolment() {
   const [isEnrollOptionsVisible, setIsEnrollOptionsVisible] = React.useState(false)
   const [enrollCourseData, setEnrollCourseData] = useState([])
 
-  const [selectedStudentId, setSelectedStudentId] = useState(useParams().studentId)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [studentName, setStudentName] = useState('')
+  const [selectedStudentId, setSelectedStudentId] = useState(searchParams.get('studentId'))
+
   const baseUrl = `http://localhost:8080/api/students/${selectedStudentId}`
   const baseStudentCourseUrl = `http://localhost:8080/api/students/${selectedStudentId}/courses`
   const baseEnrollCourseUrl = 'http://localhost:8080/api/courses'
-  const [myUrl, setMyUrl] = useState(baseUrl)
+  const [selectedStudentUrl, setSelectedStudentUrl] = useState(baseUrl)
   const [studentCourseUrl, setStudentCourseUrl] = useState(baseStudentCourseUrl)
   const [enrollCourseUrl, setEnrollCourseUrl] = useState(baseEnrollCourseUrl)
   const [availableStudentsData, setAvailableStudentData] = useState([])
   const [availableStudentsUrl] = useState('http://localhost:8080/api/students')
   const [isDataRefreshNeeded, setIsDataRefreshNeeded] = useState(false)
-  const [studentName, setStudentName] = useState('')
 
   const [studentCoursesMessage, setStudentCoursesMessage] = useState('')
-  const [courseFilterMessage, setCourseFilterMessage] = useState('')
+  const [noDataMessage, setNoDataMessage] = useState('')
   const [enrollMessage, setEnrollMessage] = useState('')
   const [unenrollMessage, setUnenrollMessage] = useState('')
   const [studentCourseData, setStudentCourseData] = useState([])
@@ -109,17 +113,27 @@ function MyStudentEnrolment() {
       unenrollMessageTimeout()
     }
   }
-  const resetStudentCoursesTableData = () => {
-    setStudentCourseUrl(baseStudentCourseUrl)
-    setIsDataRefreshNeeded(true)
-  }
-  const resetEnrollCourseTableData = () => {
-    setEnrollCourseUrl(baseEnrollCourseUrl)
-    setIsDataRefreshNeeded(true)
-  }
 
-  useEffect(() => {
-    fetch(myUrl)
+  const fetchStudentCourseData = () => (
+
+    fetch(studentCourseUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        if (typeof (data.status) === 'undefined') {
+          setStudentCourseData(data)
+        } else {
+          if (isFilterAdded) {
+            showMessage(data.message, 'studentCourseMessage')
+            setFilterValue('')
+            setIsFilterAdded(false)
+          }
+          setStudentCourseData([])
+          setStudentCourseUrl(baseStudentCourseUrl)
+        }
+      })
+  )
+  function fetchSelectedStudentData() {
+    fetch(selectedStudentUrl)
       .then((response) => response.json())
       .then((data) => {
         if (typeof (data.status) === 'undefined') {
@@ -127,21 +141,31 @@ function MyStudentEnrolment() {
           setStudentName(`${data[0].forename} ${data[0].surname}`)
         } else {
           setMainData('error')
+          setNoDataMessage(data.message)
         }
       })
-
-    fetch(studentCourseUrl)
+  }
+  const fetchStudents = () => (
+    fetch(availableStudentsUrl)
       .then((response) => response.json())
       .then((data) => {
         if (typeof (data.status) === 'undefined') {
-          setStudentCourseData(data)
-          setCourseFilterMessage('')
+          setAvailableStudentData(data)
+          if (selectedStudentId === null) {
+            setSelectedStudentId(parseInt(data[0].studentId, 10))
+            setSelectedStudentUrl(`http://localhost:8080/api/students/${selectedStudentId}`)
+            setSearchParams({ studentId: parseInt(data[0].studentId, 10) })
+          }
         } else {
-          showMessage(data.message, 'studentCourseMessage')
-          setStudentCourseUrl(baseStudentCourseUrl)
+          setAvailableStudentData('error')
+          setSelectedStudentId(0)
+          setSearchParams({ studentId: 0 })
         }
+        setSelectedStudentUrl(`http://localhost:8080/api/students/${selectedStudentId}`)
       })
+  )
 
+  function fetchEnrollCourseData() {
     fetch(enrollCourseUrl)
       .then((response) => response.json())
       .then((data) => {
@@ -150,26 +174,25 @@ function MyStudentEnrolment() {
         } else {
           setEnrollCourseUrl(baseEnrollCourseUrl)
           showMessage(data.message, 'enrollError')
+          setEnrollFilterValue('')
+          setIsFilterAdded(false)
         }
       })
+  }
 
-    fetch(availableStudentsUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        if (typeof (data.status) === 'undefined') {
-          setAvailableStudentData(data)
-        } else {
-          setAvailableStudentData('error')
-        }
-      })
+  useEffect(() => {
+    fetchStudents().then(() => {
+      fetchEnrollCourseData()
+      fetchStudentCourseData()
+      fetchSelectedStudentData()
+    })
     setIsFilterAdded(false)
     setIsDataRefreshNeeded(false)
-  }, [myUrl, studentCourseUrl, enrollCourseUrl, availableStudentsUrl, isFilterAdded, selectedStudentId, isDataRefreshNeeded])
+  }, [selectedStudentUrl, studentCourseUrl, enrollCourseUrl, availableStudentsUrl, isFilterAdded, selectedStudentId, isDataRefreshNeeded])
 
   const applySearchFilter = () => {
     if (filterValue === '') {
       showMessage('Please enter a value to filter', 'studentCourseMessage')
-      resetStudentCoursesTableData()
     } else {
       setStudentCourseUrl(`${baseStudentCourseUrl}?semester=${filterValue}`)
       setIsFilterAdded(true)
@@ -178,7 +201,6 @@ function MyStudentEnrolment() {
   const applyEnrollSearchFilter = () => {
     if (enrollFilterValue === '') {
       showMessage('Please enter a value to filter', 'enrollError')
-      resetEnrollCourseTableData()
     } else
     if (enrollSelectFilter === 'courseId') {
       setEnrollCourseUrl(`${baseEnrollCourseUrl}/${enrollFilterValue}`)
@@ -190,7 +212,7 @@ function MyStudentEnrolment() {
   }
   const changeSelectedStudent = (studentId) => {
     setSelectedStudentId(studentId)
-    setMyUrl(`http://localhost:8080/api/students/${studentId}`)
+    setSelectedStudentUrl(`http://localhost:8080/api/students/${studentId}`)
     setStudentCourseUrl(`http://localhost:8080/api/students/${studentId}/courses`)
     setIsDataRefreshNeeded(true)
     setIsEnrollOptionsVisible(false)
@@ -212,11 +234,10 @@ function MyStudentEnrolment() {
       .then((response) => response.json()).then((data) => {
         if (typeof (data.status) === 'undefined') {
           showMessage('Course enrolled successfully', 'enrollSuccess')
-          setIsDataRefreshNeeded(true)
         } else {
           showMessage(`Enrolment error: ${data.message}`, 'enrollError')
-          setIsDataRefreshNeeded(true)
         }
+        setIsDataRefreshNeeded(true)
       })
   }
   const selectStudentOptions = (
@@ -238,26 +259,25 @@ function MyStudentEnrolment() {
       <div className="filter">
         <label className="search">
           Search by Semester:
-          <input className="searchbar" type="text" name="filterValue" onChange={(e) => setFilterValue(e.currentTarget.value)} />
+          <input className="searchbar" type="text" name="filterValue" value={filterValue} onChange={(e) => setFilterValue(e.currentTarget.value)} />
           <button className="filterbutton" type="button" onClick={applySearchFilter}>
             Filter
           </button>
         </label>
         {isStudentCourseMessageVisible
-  && (
-  <div className="filtermessage">
-    <text>
-      {studentCoursesMessage}
-    </text>
-  </div>
-  )}
+          && (
+            <div className="filtermessage" style={{ width: '50%' }}>
+              <text>
+                {studentCoursesMessage}
+              </text>
+            </div>
+          )}
       </div>
       <table className="myTable">
         <thead>
           <tr>
-            {' '}
             {courseHeaderCols.map((col) => (
-              <th>
+              <th key={uuid()}>
                 {col}
               </th>
             ))}
@@ -265,10 +285,12 @@ function MyStudentEnrolment() {
 
         </thead>
         <tbody>
-          {courseFilterMessage === '' ? studentCourseData.map((data) => (
-            <tr key={data.courseId}>
+          {studentCourseData.length > 0 ? studentCourseData.map((data) => (
+            <tr key={uuid()}>
               {Object.entries(data).map(([, value]) => (
-                <td>
+                <td
+                  key={uuid()}
+                >
                   {value}
                 </td>
               ))}
@@ -279,7 +301,7 @@ function MyStudentEnrolment() {
                 </button>
               </td>
             </tr>
-          )) : <tr><td>{courseFilterMessage}</td></tr>}
+          )) : <tr><td>No enrolled courses</td></tr>}
         </tbody>
 
       </table>
@@ -297,26 +319,25 @@ function MyStudentEnrolment() {
         </select>
         <label className="search">
           Search:
-          <input className="searchbar" type="text" name="filterValue" onChange={(e) => setEnrollFilterValue(e.currentTarget.value)} />
+          <input className="searchbar" type="text" value={enrollFilterValue} name="enrollFilterValue" onChange={(e) => setEnrollFilterValue(e.currentTarget.value)} />
           <button className="filterbutton" type="button" onClick={applyEnrollSearchFilter}>
             Filter
           </button>
 
         </label>
         {isEnrollMessageVisible
-        && (
-          <text className="actionmessage" style={{ fontWeight: 'bold', color: isError ? 'red' : 'forestgreen' }}>
-            {enrollMessage}
-          </text>
-        )}
+          && (
+            <text className="actionmessage" style={{ fontWeight: 'bold', color: isError ? 'red' : 'royalblue' }}>
+              {enrollMessage}
+            </text>
+          )}
       </div>
       <div>
         <table className="myTable">
           <thead>
             <tr>
-              {' '}
               {courseHeaderCols.map((col) => (
-                <th>
+                <th key={uuid()}>
                   {col}
                 </th>
               ))}
@@ -324,10 +345,12 @@ function MyStudentEnrolment() {
 
           </thead>
           <tbody>
-            { enrollCourseData.map((data) => (
-              <tr key={data.courseId}>
+            {enrollCourseData.map((data) => (
+              <tr key={uuid()}>
                 {Object.entries(data).map(([, value]) => (
-                  <td>
+                  <td
+                    key={uuid()}
+                  >
                     {value}
                   </td>
                 ))}
@@ -353,9 +376,8 @@ function MyStudentEnrolment() {
       <table className="myTable">
         <thead>
           <tr>
-            {' '}
             {headerCols.map((col) => (
-              <th>
+              <th key={uuid()}>
                 {col}
               </th>
             ))}
@@ -363,16 +385,18 @@ function MyStudentEnrolment() {
 
         </thead>
         <tbody>
-          { mainData.map((data) => (
-            <tr key={data.studentId}>
+          {mainData !== 'error' ? mainData.map((data) => (
+            <tr key={uuid()}>
               {Object.entries(data).map(([, value]) => (
-                <td>
+                <td
+                  key={uuid()}
+                >
                   {value}
                 </td>
               ))}
 
             </tr>
-          )) }
+          )) : <tr><td>{noDataMessage}</td></tr>}
         </tbody>
       </table>
       <br />
@@ -390,11 +414,11 @@ function MyStudentEnrolment() {
           </button>
         )}
         {isUnenrollMessageVisible
-        && (
-          <text className="actionmessage" style={{ fontWeight: 'bold', color: isError ? 'red' : 'forestgreen' }}>
-            {unenrollMessage}
-          </text>
-        )}
+          && (
+            <text className="actionmessage" style={{ fontWeight: 'bold', color: isError ? 'red' : 'royalblue' }}>
+              {unenrollMessage}
+            </text>
+          )}
       </div>
       {isEnrollOptionsVisible ? enrollOptions : null}
     </div>

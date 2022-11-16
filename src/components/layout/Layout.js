@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {
-  Outlet, NavLink, useParams, useLocation
+  Outlet, NavLink, useLocation
 } from 'react-router-dom'
 import React from 'react'
 import { string, bool } from 'prop-types'
@@ -36,8 +36,8 @@ function Layout() {
           active={location.pathname === '/courses'}
         />
         <HeaderLink
-          to={useParams.studentId ? '/enrolment/:studentId' : '/enrolment/1'}
-          active={location.pathname.includes('/enrolment/')}
+          to="/enrolment"
+          active={location.pathname.includes('/enrolment')}
         />
       </div>
 
