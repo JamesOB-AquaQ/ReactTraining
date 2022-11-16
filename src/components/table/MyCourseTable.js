@@ -18,7 +18,6 @@ function MyTable() {
     'Student Capacity',
     'Action'
   ]
-  //  const mainData = [...]
   const [mainData, setMainData] = useState([])
   const baseUrl = 'http://localhost:8080/api/courses'
   const [myUrl, setMyUrl] = useState('http://localhost:8080/api/courses')
@@ -75,6 +74,7 @@ function MyTable() {
       actionMessageTimeout()
     }
   }
+
   function resetInputRowValues() {
     setNewCourseName('')
     setNewSubjectArea('')
@@ -83,6 +83,7 @@ function MyTable() {
     setNewStudentCapacity('')
     setPostFailed(false)
   }
+
   function toggleAddCourseForm() {
     setIsAddCourseFormVisible(!isAddCourseFormVisible)
     resetInputRowValues()
@@ -96,6 +97,7 @@ function MyTable() {
     setPostFailed(false)
     resetInputRowValues()
   }
+
   useEffect(() => {
     fetch(myUrl)
       .then((response) => response.json())
@@ -108,9 +110,9 @@ function MyTable() {
         } else {
           showMessage(data.message, 'filtermessage')
           setMyUrl(baseUrl)
+          setFilterValue('')
+          setIsFilterAdded(false)
         }
-        setFilterValue('')
-        setIsFilterAdded(false)
         setIsDataRefreshNeeded(false)
       })
   }, [myUrl, isFilterAdded, isDataRefreshNeeded])
@@ -248,7 +250,6 @@ function MyTable() {
       <table className="myTable">
         <thead>
           <tr>
-            {' '}
             {headerCols.map((col) => (
               <th key={uuid()}>
 
@@ -267,6 +268,7 @@ function MyTable() {
                     border: (data.courseId === editingRow) && (prop !== 'courseId') ? '2px solid blue' : '1px solid black'
                   }}
                   contentEditable={(data.courseId === editingRow) && (prop !== 'courseId')}
+                  suppressContentEditableWarning="true"
                   // eslint-disable-next-line react/no-unknown-property
                   field={prop}
                   onBlur={(event) => {
@@ -287,7 +289,7 @@ function MyTable() {
             </tr>
           ))}
           {isAddCourseFormVisible && (
-          <tr style={postFailed ? { backgroundColor: 'darkred' } : { backgroundColor: 'steelblue' }}>
+          <tr style={postFailed ? { backgroundColor: 'darkred' } : { backgroundColor: 'skyblue' }}>
             <td>New</td>
             <td>
               <div>
@@ -367,7 +369,7 @@ function MyTable() {
       </button>
       {isActionMessageVisible
         && (
-          <text className="actionmessage" style={{ fontWeight: 'bold', color: isError ? 'red' : 'forestgreen' }}>
+          <text className="actionmessage" style={{ fontWeight: 'bold', color: isError ? 'red' : 'royalblue' }}>
             {actionMessage}
           </text>
         )}

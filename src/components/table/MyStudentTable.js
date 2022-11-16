@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import {
   Trash2, Edit, PlusSquare, PlusCircle, Maximize2, MinusCircle, X
 } from 'react-feather'
+import { v4 as uuid } from 'uuid'
 
 function MyTable() {
   const headerCols = [
@@ -250,9 +251,8 @@ function MyTable() {
       <table className="myTable">
         <thead>
           <tr>
-            {' '}
             {headerCols.map((col) => (
-              <th>
+              <th key={uuid()}>
                 {col}
               </th>
             ))}
@@ -260,13 +260,15 @@ function MyTable() {
         </thead>
         <tbody>
           {mainData.map((data) => (
-            <tr key={data.studentId}>
+            <tr key={uuid()}>
               {Object.entries(data).map(([prop, value]) => (
                 <td
+                  key={uuid()}
                   style={{
                     border: (data.studentId === editingRow) && (prop !== 'studentId') ? '2px solid blue' : '1px solid black'
                   }}
                   contentEditable={(data.studentId === editingRow) && (prop !== 'studentId')}
+                  suppressContentEditableWarning="true"
                   // eslint-disable-next-line react/no-unknown-property
                   field={prop}
                   onBlur={(event) => {
@@ -283,7 +285,7 @@ function MyTable() {
                 <button className="buttondelete-students" type="button" onClick={() => { removeRow(data.studentId) }}>
                   <Trash2 className="icon-sizing" />
                 </button>
-                <Link to={`/enrolment/${data.studentId}`}>
+                <Link to={`/enrolment?studentId=${data.studentId}`}>
                   <button className="buttonviewenroll-students" type="button">
                     <Maximize2 className="icon-sizing" />
                   </button>
@@ -292,7 +294,7 @@ function MyTable() {
             </tr>
           ))}
           {isAddStudentFormVisible && (
-          <tr style={postFailed ? { backgroundColor: 'darkred' } : { backgroundColor: 'steelblue' }}>
+          <tr style={postFailed ? { backgroundColor: 'darkred' } : { backgroundColor: 'skyblue' }}>
             <td>New</td>
             <td>
               <div>

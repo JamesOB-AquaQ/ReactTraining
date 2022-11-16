@@ -33,8 +33,7 @@
     margin-left: 2.5%;
     background-color: #810303c9;
 
-    &:hover,
-    &:focus {
+    &:hover {
         background-color: #fa5e53ea;
     }
 }
@@ -44,8 +43,7 @@
     margin-left: 2.5%;
     background-color: #c06109ec;
 
-    &:hover,
-    &:focus {
+    &:hover {
         background-color: #dd7c21b6;
     }
 }
@@ -54,8 +52,7 @@
     margin-left: 1.5%;
     background-color: #257025d8;
 
-    &:hover,
-    &:focus {
+    &:hover {
         background-color: #70c070bd;
     }
 }
@@ -96,31 +93,7 @@
         background-color: #ca4141b6;
     }
 }
-// .buttonenroll {
-//     @include button;
-//     font: bold 1.4vw/1.5 'Roboto', sans-serif;
-//     width: 95%;
-//     margin-left: 2.5%;
-//     background-color: #c06109ec;
-//     &:hover,
-//     &:focus {
-//         background-color: #dd7c21b6;
-//     }
-// }
-// .button-unenroll {
-//     @include button;
-//     width: 95%;
-//     font: bold 1.4vw/1.5 'Roboto', sans-serif;
-//     display: flex;
-//     margin: 0 auto;
-//     align-items: center;
-//     text-align: center;
-//     padding-right: 0;
-//     background-color: #961f0aec;
-//     &:hover {
-//         background-color: #ca4141b6;
-//     }
-// }
+
 .button-enrolloptions {
     @include button;
     font: bold 1.3vw/1.5 'Roboto', sans-serif;
@@ -143,8 +116,7 @@
     align-self: flex-end;
     align-items: center;
   }
-.buttonaddnew:hover,
-.buttonadd:focus {
+.buttonaddnew:hover {
     background-color: #70c070bd;
 }
 
@@ -156,8 +128,7 @@
     transition: background-color .3s;
 }
 
-.resetbutton:hover,
-.resetbutton:focus {
+.resetbutton:hover {
     background-color: #b35804b9;
 }
 .buttondelete-courses {
@@ -235,10 +206,6 @@
         align-items: center;
     }
     
-    // .buttonviewenroll {
-    //     padding-bottom: 20%;
-    //     padding-top: 5%;
-    // }
 
     .filterbutton {
         @include button;
@@ -255,8 +222,7 @@
         font: bold 1.5vw/1.5 'Roboto', sans-serif;
     }
 
-    .filterbutton:hover,
-    .filterbutton:focus {
+    .filterbutton:hover {
         background-color: #011e9ee3;
     }
 }

@@ -79,12 +79,12 @@
   tbody {
     tr {
       &:nth-child(even) {
-        background-color: rgb(126, 125, 125);
+        background-color: $brand-tableRowBg1;
         color: $brand-tableRow;
       }
 
       &:nth-child(odd) {
-        background-color: rgb(179, 179, 179);
+        background-color: $brand-tableRowBg2;
         color: $brand-tableRow;
       }
     }
@@ -94,7 +94,7 @@
     width: 100%;
     padding: 0;
     background-color: #ffffff23;
-    color: white;
+    color: rgb(116, 66, 10);
     border: 2px inset#ccc;
     border-radius: 4px;
   }

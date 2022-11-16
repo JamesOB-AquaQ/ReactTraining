@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<NoPage />} />
             <Route path="students" element={<Students />} />
-            <Route path="enrolment/:studentId" element={<SingleStudentEnrolment />} />
+            <Route path="enrolment" element={<SingleStudentEnrolment />} />
             <Route path="courses" element={<Courses />} />
             <Route path="*" element={<NoPage />} />
           </Route>
