@@ -6,6 +6,7 @@ import Students from './components/pages/Students'
 import Courses from './components/pages/Courses'
 import NoPage from './components/pages/NoPage'
 import SingleStudentEnrolment from './components/pages/SingleStudentEnrolment'
+import Landing from './components/pages/Landing'
 import './utils/app.scss'
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<NoPage />} />
+            <Route index element={<Landing />} />
             <Route path="students" element={<Students />} />
             <Route path="enrolment" element={<SingleStudentEnrolment />} />
             <Route path="courses" element={<Courses />} />

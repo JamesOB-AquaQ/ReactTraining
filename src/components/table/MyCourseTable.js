@@ -46,13 +46,13 @@ function MyTable() {
     setFilterMessageTimeoutHandle(setTimeout(() => {
       setIsFilterMessageVisible(false)
       setFilterMessage('')
-    }, 5000))
+    }, 3000))
   }
   const actionMessageTimeout = () => {
     setActionMessageTimeoutHandle(setTimeout(() => {
       setIsActionMessageVisible(false)
       setActionMessage('')
-    }, 5000))
+    }, 3000))
   }
   const showMessage = (message, type) => {
     if (type === 'filtermessage') {
@@ -107,11 +107,13 @@ function MyTable() {
           if (data.length === 0) {
             showMessage('No data found', 'filtermessage')
           }
-        } else {
+        } else if (isFilterAdded) {
           showMessage(data.message, 'filtermessage')
           setMyUrl(baseUrl)
           setFilterValue('')
           setIsFilterAdded(false)
+        } else if (data.status === 404) {
+          setMainData([])
         }
         setIsDataRefreshNeeded(false)
       })
@@ -259,7 +261,7 @@ function MyTable() {
           </tr>
         </thead>
         <tbody>
-          {mainData.map((data) => (
+          {mainData.length > 0 ? mainData.map((data) => (
             <tr key={uuid()}>
               {Object.entries(data).map(([prop, value]) => (
                 <td
@@ -287,9 +289,9 @@ function MyTable() {
                 </button>
               </td>
             </tr>
-          ))}
+          )) : <tr><td>No course data found</td></tr>}
           {isAddCourseFormVisible && (
-          <tr style={postFailed ? { backgroundColor: 'darkred' } : { backgroundColor: 'skyblue' }}>
+          <tr style={postFailed ? { backgroundColor: 'lightcoral' } : { backgroundColor: 'skyblue' }}>
             <td>New</td>
             <td>
               <div>

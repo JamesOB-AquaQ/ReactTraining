@@ -51,7 +51,6 @@ function MyStudentEnrolment() {
   const [isDataRefreshNeeded, setIsDataRefreshNeeded] = useState(false)
 
   const [studentCoursesMessage, setStudentCoursesMessage] = useState('')
-  const [noDataMessage, setNoDataMessage] = useState('')
   const [enrollMessage, setEnrollMessage] = useState('')
   const [unenrollMessage, setUnenrollMessage] = useState('')
   const [studentCourseData, setStudentCourseData] = useState([])
@@ -67,19 +66,19 @@ function MyStudentEnrolment() {
     setEnrollMessageTimeoutHandle(setTimeout(() => {
       setIsEnrollMessageVisible(false)
       setEnrollMessage('')
-    }, 5000))
+    }, 3000))
   }
   const studentCourseMessageTimeout = () => {
     setStudentCourseMessageTimeoutHandle(setTimeout(() => {
       setIsStudentCourseMessageVisible(false)
       setStudentCoursesMessage('')
-    }, 5000))
+    }, 3000))
   }
   const unenrollMessageTimeout = () => {
     setUnenrollMessageTimeoutHandle(setTimeout(() => {
       setIsUnenrollMessageVisible(false)
       setUnenrollMessage('')
-    }, 5000))
+    }, 3000))
   }
   const showMessage = (message, type) => {
     if (type === 'studentCourseMessage') {
@@ -140,8 +139,7 @@ function MyStudentEnrolment() {
           setMainData(data)
           setStudentName(`${data[0].forename} ${data[0].surname}`)
         } else {
-          setMainData('error')
-          setNoDataMessage(data.message)
+          setMainData([])
         }
       })
   }
@@ -157,7 +155,7 @@ function MyStudentEnrolment() {
             setSearchParams({ studentId: parseInt(data[0].studentId, 10) })
           }
         } else {
-          setAvailableStudentData('error')
+          setAvailableStudentData([])
           setSelectedStudentId(0)
           setSearchParams({ studentId: 0 })
         }
@@ -173,9 +171,14 @@ function MyStudentEnrolment() {
           setEnrollCourseData(data)
         } else {
           setEnrollCourseUrl(baseEnrollCourseUrl)
-          showMessage(data.message, 'enrollError')
-          setEnrollFilterValue('')
-          setIsFilterAdded(false)
+          if (isFilterAdded) {
+            showMessage(data.message, 'enrollError')
+            setEnrollFilterValue('')
+            setIsFilterAdded(false)
+          } else if (data.status === 404) {
+            setEnrollCourseData([])
+            setEnrollMessage('')
+          }
         }
       })
   }
@@ -345,7 +348,7 @@ function MyStudentEnrolment() {
 
           </thead>
           <tbody>
-            {enrollCourseData.map((data) => (
+            {enrollCourseData.length > 0 ? enrollCourseData.map((data) => (
               <tr key={uuid()}>
                 {Object.entries(data).map(([, value]) => (
                   <td
@@ -361,7 +364,7 @@ function MyStudentEnrolment() {
                   </button>
                 </td>
               </tr>
-            ))}
+            )) : <tr><td>No courses available</td></tr>}
           </tbody>
 
         </table>
@@ -385,7 +388,7 @@ function MyStudentEnrolment() {
 
         </thead>
         <tbody>
-          {mainData !== 'error' ? mainData.map((data) => (
+          {mainData.length > 0 ? mainData.map((data) => (
             <tr key={uuid()}>
               {Object.entries(data).map(([, value]) => (
                 <td
@@ -396,7 +399,7 @@ function MyStudentEnrolment() {
               ))}
 
             </tr>
-          )) : <tr><td>{noDataMessage}</td></tr>}
+          )) : <tr><td>No Students</td></tr>}
         </tbody>
       </table>
       <br />
